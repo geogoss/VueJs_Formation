@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Js Playground</title>
+</head>
+
+<body>
+    <div id="mon-app">
+        <h1>Vue Js Cours</h1>
+        <p> {{ txt }} </p>
+        <p> {{ description() }} </p>
+        <p> {{ calcul(14, 23) }} </p>
+        <p> {{ testThis() }} </p>
+        <!-- Faire du data binding avec un href et une img nous permet de gérer les url de façon dynamique -->
+        <a v-bind:href="urlVuejs">Le site de vue.js</a>
+        <img v-bind:src="urlImage" style="width: auto;" alt="">
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- créer une instance en js qui sert à lier le code html et à renvoyer un template qu'on peut voir -->
+    <script>
+        // création de la 1ere instance (svt on en utilise qu'une par appli)
+        new Vue({
+            el: '#mon-app', // la propriété el lie l'instance
+            data: {
+                txt: 'Hello World',
+                nb1: 10,
+                nb2: 45,
+                urlVuejs: 'https://vuejs.org/guide/quick-start.html',
+                urlImage: 'https://plus.unsplash.com/premium_photo-1661661301670-9ee6e7cde1d8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw3fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60'
+            },
+            // methods est la propriété ou on va créer nos fonction
+            methods: {
+                // Attention pas de fonction flèchée
+                description: function () {
+                    return "Bonjour je suis geof"
+                },
+                calcul: function (a, b) {
+                    return a + b
+                },
+                testThis: function () {
+                    return this.nb1 + this.nb2
+                }
+            }
+        })
+
+
+    </script>
+</body>
+
+</html>
