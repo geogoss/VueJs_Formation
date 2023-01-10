@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Js Playground </title>
+</head>
+<style>
+    canvas {
+        width: 300px;
+        height: 200px;
+        border: 1px solid #333;
+    }
+
+</style>
+
+<body>
+    <div id="mon-app">
+        <h1>Vue Js Cours</h1>
+        <h2>Directive v-on =>
+            <a href="https://vuejs.org/api/built-in-directives.html#built-in-directives">doc Vue.js</a>
+        </h2>
+        <!-- aller voir la doc pour les différentes directives (adeventlistener en JS ;-) ) -->
+
+        <div>
+            <button v-on:click="compteur++">Augmenter</button>
+            <button v-on:click="compteur--">Diminuer</button>
+        </div>
+        <h3>Compteur : {{ compteur }} </h3>
+
+
+        <!-- Autre façon plus pro de faire ces boutons compteur c'est de passer par des fonctions -->
+
+        <div>
+            <button v-on:click="up">Up</button>
+            <button v-on:click="down">Down</button>
+        </div>
+        <h3>Compteur2 : {{ compteur2 }} </h3>
+
+
+        <!-- on va utiliser les événement -> directive v-on pour avoir les coordonnées de la souris avec un canvas -->
+
+        <canvas v-on:mousemove="coordonees"></canvas>
+        <p> {{ x }} / {{ y }} </p>
+
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- créer une instance en js qui sert à lier le code html et à renvoyer un template qu'on peut voir -->
+    <script>
+        // création de la 1ere instance (svt on en utilise qu'une par appli)
+        new Vue({
+            el: '#mon-app', // la propriété el lie l'instance
+            data: {
+                compteur: 0,
+                compteur2: 0,
+                x: 0,
+                y: 0
+
+            },
+            // methods est la propriété ou on va créer nos fonction
+            methods: {
+                up: function () {
+                    this.compteur2++
+                },
+                down: function () {
+                    this.compteur2--
+                },
+                coordonees: function (e) {
+                    this.x = e.offsetX;
+                    this.y = e.offsetY;
+                }
+            }
+        })
+
+
+    </script>
+</body>
+
+</html>
