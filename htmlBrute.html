@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Js Playground </title>
+</head>
+
+<body>
+    <div id="mon-app">
+        <h1>Vue Js Cours</h1>
+        <h2>v-model 2 way data binding =>
+            <a href="https://vuejs.org/api/built-in-directives.html#v-model">doc Vue.js</a>
+        </h2>
+        
+        <div>
+            <button v-on:click="compteur2++">Up</button>
+            <button v-on:click="compteur2--">Down</button>
+        </div>
+        <h3>Compteur2 : {{ compteur2 }} </h3>
+        
+        <!-- On peut faire une condition ternaire mais pas de if/else -->
+        <h3> {{ compteur2 ? 'il est true' : 'il est false' }} </h3>
+        
+        <p>Ton nom :</p>
+        <input type="text" v-model="valeur">
+        <p>{{ valeur }} </p>
+
+        <!-- utiliser v-html pour faire passer de l'html brut -->
+
+        <p v-html="htmlBrut"> {{ htmlBrut }} </p>
+
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- créer une instance en js qui sert à lier le code html et à renvoyer un template qu'on peut voir -->
+    <script>
+        // création de la 1ere instance (svt on en utilise qu'une par appli)
+        new Vue({
+            el: '#mon-app', // la propriété el lie l'instance
+            data: {
+                compteur2: 0,
+                valeur: "",
+                htmlBrut: "<p> Mon html brut</p> "
+                
+
+            },
+            // methods est la propriété ou on va créer nos fonction
+            methods: {
+                up: function () {
+                    this.compteur2++
+                },
+                down: function () {
+                    this.compteur2--
+                },
+                
+            }
+        })
+
+
+    </script>
+</body>
+
+</html>
