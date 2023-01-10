@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Js Playground </title>
+</head>
+<style>
+    
+
+</style>
+
+<body>
+    <div id="mon-app">
+        <h1>Vue Js Cours</h1>
+        <h2>event modifiers => <a href="https://vuejs.org/guide/essentials/event-handling.html#event-modifiers">doc Vue.js</a></h2>
+
+        <!-- Ici on va voir 2 event modifiers -> v-on:click.once et v-on:click.prevent -->
+        <!-- avec v-on:click.once -->
+        <!-- <div>
+            <p>Lorem, ipsum dolor.
+                <button v-on:click.once="foo">Cliquez</button>
+
+            </p>
+        </div> -->
+
+        <!-- avec v-on:click.stop -->
+        <div v-on:click="foo">
+            <p>Lorem, ipsum dolor.
+                <button v-on:click.stop="foo">Cliquez</button>
+
+            </p>
+        </div>
+
+        <!-- dernier v-on:submit.prevent pour que quand on click submit sur un formulaire , que ça ne raffraichisse pas la page -->
+        <!-- equivalent du e.preventdefault -->
+        <form v-on:submit.prevent="onsubmit">
+            <button>Valider</button>
+        </form>
+
+
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- créer une instance en js qui sert à lier le code html et à renvoyer un template qu'on peut voir -->
+    <script>
+        // création de la 1ere instance (svt on en utilise qu'une par appli)
+        new Vue({
+            el: '#mon-app', // la propriété el lie l'instance
+            data: {
+                
+
+            },
+            // methods est la propriété ou on va créer nos fonction
+            methods: {
+                foo: function () {
+                    console.log("cliqué");
+                }
+              
+            }
+        })
+
+
+    </script>
+</body>
+
+</html>
