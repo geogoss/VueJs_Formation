@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Js Playground </title>
+</head>
+
+<body>
+    <div id="mon-app">
+        <h1>Vue Js Cours</h1>
+        <h2>watch =>
+            <a href="https://vuejs.org/guide/essentials/computed.html#computed-properties">doc Vue.js</a>
+        </h2>
+        <div>
+            <button v-on:click="compteurA++">Up</button>
+            <button v-on:click="compteurA--">Down</button>
+        </div>
+        <p>compteurA : {{ compteurA }} </p>
+        <p> {{ checkvaleur() }} |||||| {{ memo }} </p>
+
+        <button v-on:click="compteurB++">Up</button>
+        <p>CompteurB : {{ compteurB}} </p>
+
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- créer une instance en js qui sert à lier le code html et à renvoyer un template qu'on peut voir -->
+    <script>
+        // création de la 1ere instance (svt on en utilise qu'une par appli)
+        new Vue({
+            el: '#mon-app', // la propriété el lie l'instance
+            data: {
+                compteurA: 0,
+                compteurB: 0,
+
+            },
+            // methods est la propriété ou on va créer nos fonction
+            methods: {
+                checkvaleur: function () {
+                    console.log('fonction est lançée');
+
+                    return this.compteurA > 10 ? 'plus grand que 10' : 'plus petit que 10'
+                }
+            },
+            // les fonctions computed vont garder en mémoire, vont mémoriser la valeur d'une donnée et si la valeur ne change pas et bien on ne rappelle pas cette fonction
+            // computed est une nouvelle propriété
+            computed: {
+                memo: function () {
+                    console.log('MEMO est lançée');
+
+                    return this.compteurB > 10 ? 'plus grand que 10' : 'plus petit que 10'
+
+                }
+            },
+            // on va surveiller une de nos propriété
+            watch: {
+                compteurA: function () {
+                    
+                    // ci dessous c'est une fonction non flèchée -> le this ne fonctionne pas et on doit l'appeler dans une variable
+                    // var ctx = this;
+                    // setTimeout(function () {
+                    //     ctx.compteurA = 0;
+                    // }, 1500)
+                    
+                    setTimeout(() => {
+                        this.compteurA = 0;
+                    }, 1500)
+                }
+            }
+        })
+
+    </script>
+</body>
+
+</html>
