@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Js Playground </title>
+</head>
+<style>
+    .cadre {
+        width: 250px;
+        height: 250px;
+        border: 1px solid #333;
+    }
+
+    .red {
+        background-color: crimson;
+    }
+
+    .bordure {
+        border: 10px solid #333;
+    }
+</style>
+
+<body>
+    <div id="mon-app">
+        <h1>Vue Js Cours</h1>
+        <h2>inline CSS =>
+            <a href="https://vuejs.org/api/sfc-css-features.html#sfc-css-features">doc Vue.js</a>
+        </h2>
+        <button v-on:click="toggleColor = !toggleColor">Change toggle</button>
+        <div v-bind:class="[objCss, toggleColor ? 'bordure' : '']"></div>
+
+        <!-- 1ere façon de mettre du style css inline -->
+        <p :style="{color: 'blue'}">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur, nobis sed, ullam ipsa, quidem illo provident doloremque in quasi aspernatur magni! Maiores facilis amet soluta itaque quaerat veniam perspiciatis deleniti illo vel libero? Dolor voluptate rem culpa repellendus fuga dolore dicta suscipit voluptatem totam expedita? Distinctio nam in delectus enim!</p>
+        <!-- si propriété qui prennent 2 mots -> faire du camelCase -->
+        <p :style="{backgroundColor: 'lightblue'}">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur, nobis sed, ullam ipsa, quidem illo provident doloremque in quasi aspernatur magni! Maiores facilis amet soluta itaque quaerat veniam perspiciatis deleniti illo vel libero? Dolor voluptate rem culpa repellendus fuga dolore dicta suscipit voluptatem totam expedita? Distinctio nam in delectus enim!</p>
+        <!-- si plusieurs propriétés css -> passer par un objet dans computed -->
+        <!-- et créer les propriétés qu'on veut dans data -> on les appelera dans computed avec this -->
+        <p :style="monStyle">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur, nobis sed, ullam ipsa, quidem illo provident doloremque in quasi aspernatur magni! Maiores facilis amet soluta itaque quaerat veniam perspiciatis deleniti illo vel libero? Dolor voluptate rem culpa repellendus fuga dolore dicta suscipit voluptatem totam expedita? Distinctio nam in delectus enim!</p>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- créer une instance en js qui sert à lier le code html et à renvoyer un template qu'on peut voir -->
+    <script>
+        // création de la 1ere instance (svt on en utilise qu'une par appli)
+        new Vue({
+            el: '#mon-app', // la propriété el lie l'instance
+
+            data: {
+                toggleColor: false,
+                color: 'pink',
+                width: 200
+            },
+
+            computed: {
+                objCss: function () {
+                    return {
+                        cadre: true,
+                        red: this.toggleColor
+                    }
+                },
+                monStyle: function () {
+                    return {
+                        backgroundColor: this.color,
+                        width: this.width + 'px'
+                    }
+                }
+
+
+
+            }
+
+
+
+        })
+
+    </script>
+</body>
+
+</html>
