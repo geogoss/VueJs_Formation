@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Js Playground </title>
+</head>
+<style>
+    .cadre {
+        width: 250px;
+        height: 250px;
+        border: 1px solid #333;
+    }
+    .red {
+        background-color: crimson;
+    }
+    .bordure {
+        border: 10px solid #333;
+    }
+
+
+</style>
+<body>
+    <div id="mon-app">
+        <h1>Vue Js Cours</h1>
+        <h2>Toggle en CSS =>
+            <a href="https://vuejs.org/api/sfc-css-features.html#sfc-css-features">doc Vue.js</a>
+        </h2>
+        <button v-on:click="toggleColor = !toggleColor">Change toggle</button>
+
+        <!-- on peut aussi faire passer un tableau -->
+        <!-- <div v-bind:class="objCss"></div> -->
+        <!-- on vient d'ici et on change pour un tableau -->
+        <!-- <div v-bind:class="[objCss, 'bordure']"></div> -->
+        <!-- on peut aussi mettre une condition ternaire -->
+        <div v-bind:class="[objCss, toggleColor ? 'bordure' : '']"></div>
+
+     
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- créer une instance en js qui sert à lier le code html et à renvoyer un template qu'on peut voir -->
+    <script>
+        // création de la 1ere instance (svt on en utilise qu'une par appli)
+        new Vue({
+            el: '#mon-app', // la propriété el lie l'instance
+
+            data: {
+              toggleColor: false,
+            },
+
+            computed: {
+                objCss: function() {
+                    return {
+                        cadre: true,
+                        red: this.toggleColor
+                    }
+                }
+            }
+
+
+           
+        })
+
+    </script>
+</body>
+
+</html>
