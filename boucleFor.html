@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Js Playground </title>
+</head>
+<style>
+    .box {
+        width: 250px;
+        height: 250px;
+        border: 1px solid #333;
+    }
+
+    .red {
+        background-color: crimson;
+    }
+
+    .bordure {
+        border: 10px solid #333;
+    }
+</style>
+
+<body>
+    <div id="mon-app">
+        <h1>Vue Js Cours</h1>
+        <h2>boucle for =>
+            <a href="https://vuejs.org/guide/essentials/conditional.html#conditional-rendering">doc Vue.js</a>
+        </h2>
+        <button v-on:click="toggleBox = !toggleBox">Change toggle</button>
+
+        <!-- faire apparaitre les li avec les numéros du tableau -->
+        <ul>
+            <li v-for="e in tableau"> {{ e }} </li>
+        </ul>
+        <p>------------------------------------------------------------</p>
+
+        <!-- si on veut avoir les éléments et leur indexe -->
+        <ul>
+            <li v-for="(fruit, index) in tableauFruits"> {{index}} {{ fruit }}</li>
+        </ul>
+        <p>------------------------------------------------------------</p>
+        
+        <!-- on peut faire la même chose avec un objet -->
+        <ul>
+            <li v-for="c in chat"> {{ c }} </li>
+        </ul>
+        <p>------------------------------------------------------------</p>
+        
+        <!-- si on veut afficher la clé et la valeur (comme dico dans python) -->
+        <ul>
+            <li v-for="(c, props) in chat"> {{ props }} : {{ c }} </li>
+        </ul>
+        <p>------------------------------------------------------------</p>
+
+        <!-- Si maintenant on a un tableau d'objet, il faudra faire une double boucle for pour atteindre tous les éléments -->
+        <ul>
+            <li v-for="e in objChat">
+                <div v-for="(chat, props) in e"> {{ props }} : {{ chat }} </div>
+            </li>
+        </ul>
+
+
+
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- créer une instance en js qui sert à lier le code html et à renvoyer un template qu'on peut voir -->
+    <script>
+        // création de la 1ere instance (svt on en utilise qu'une par appli)
+        new Vue({
+            el: '#mon-app', // la propriété el lie l'instance
+
+            data: {
+                tableau: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+                tableauFruits: ["pomme", "citron", "fraise", "poire", "ananas"],
+                chat:{
+                    nom: "Darwin",
+                    age: 7,
+                    race: "persan",
+                    couleur: "gris",
+                    poids: "5 kg"
+                },
+                objChat:[
+                    {nom: "Darwin", age: 7, race: "persan", couleur: "gris", poids: "5 kg"},
+                    {nom: "Lili", age: 7, race: "persan", couleur: "gris", poids: "5 kg"},
+                    {nom: "Cookie", age: 7, race: "persan", couleur: "gris", poids: "5 kg"},
+                    {nom: "Cali", age: 7, race: "persan", couleur: "gris", poids: "5 kg"},
+                    {nom: "Bichon", age: 7, race: "persan", couleur: "gris", poids: "5 kg"},
+                    {nom: "Sibie", age: 7, race: "persan", couleur: "gris", poids: "5 kg"},
+                ],
+                toggleBox: true,
+
+            },
+
+            computed: {
+
+            }
+
+        })
+
+    </script>
+</body>
+
+</html>
