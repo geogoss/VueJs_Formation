@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Js Playground </title>
+</head>
+
+<!-- On pourrait créer plusieurs instances et même en changer une à partir d'une autre mais on ne va pas pouvoir les réutiliser.  -->
+<!-- C'est pour cela qu'on va apprendre à utiliser les composants (component) -> comme des instances mais on peut les réutiliser et faire passer facilement des données entre eux -->
+<body>
+    <div id="mon-app1">
+        <h1> {{txt}} </h1>
+
+    </div>
+
+    <div id="mon-app2">
+        <h1> {{txt}} </h1>
+        <button v-on:click="func1">Changement de APP1</button>
+
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script>
+        // création de la 1ere instance 
+        const ins1 = new Vue({
+            el: '#mon-app1',
+            data: {
+                txt: "Hello APP 1"
+            }
+
+        })
+
+        // création de la 2eme instance 
+        const ins2 = new Vue({
+            el: '#mon-app2',
+            data: {
+                txt: "Hello APP 2"
+            },
+            methods:{
+                func1: function () {
+                    ins1.txt = "Je t'ai changé"
+                }
+            }
+        })
+
+
+    </script>
+</body>
+
+</html>
