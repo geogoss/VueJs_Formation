@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Js Playground </title>
+</head>
+
+<!-- On pourrait créer plusieurs instances et même en changer une à partir d'une autre mais on ne va pas pouvoir les réutiliser.  -->
+<!-- C'est pour cela qu'on va apprendre à utiliser les composants (component) -> comme des instances mais on peut les réutiliser et faire passer facilement des données entre eux -->
+<body>
+    <div id="mon-app1">
+        <h1>Vue Js Cours</h1>
+        <h2>premier composant =>
+            <a href="https://vuejs.org/api/component-instance.html#component-instance">doc Vue.js</a>
+        </h2>
+
+        <!-- on met le composant dans l'instance qu'on veut ( même si qu'une seule normalement) et on la met autant de fois que l'on veut -->
+        <mon-premier-component></mon-premier-component>
+        <mon-premier-component></mon-premier-component>
+        <mon-premier-component></mon-premier-component>
+        <mon-premier-component></mon-premier-component>
+        
+    </div>
+    
+    <div id="mon-app2">
+        <h1> {{txt}} </h1>
+        <button v-on:click="func1">Changement de APP1</button>
+        <mon-premier-component></mon-premier-component>
+        <mon-premier-component></mon-premier-component>
+        <mon-premier-component></mon-premier-component>
+        <mon-premier-component></mon-premier-component>
+        
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script>
+
+        // création d'un premier component
+        // on va pouvoir utiliser des données avec data -> mais attention sous forme de fonction qui retourne un objet de data -> ça permet de pouvoir donner des valeurs différentes à chaques component et qui ai des comportement différents. Pas possible avec instance
+        // on peut aussi utiliser methods
+        Vue.component('mon-premier-component', {
+            template: '<p> Mon premier component {{ nom }} <button v-on:click="changerNom">Changement</button> </p>',
+            data: function(){
+                return {
+                    nom: "John Doe",
+                }
+            },
+            methods:{
+                changerNom: function(){
+                    this.nom = "Jack Jack"
+                }
+            }
+        })
+
+
+
+        // création de la 1ere instance 
+        const ins1 = new Vue({
+            el: "#mon-app1",
+            data: {
+                txt: "Hello APP 1"
+            }
+
+        })
+
+
+        // création de la 2eme instance 
+        const ins2 = new Vue({
+            el: '#mon-app2',
+            data: {
+                txt: "Hello APP 2"
+            },
+            methods:{
+                func1: function () {
+                    ins1.txt = "Je t'ai changé"
+                }
+            }
+        })
+
+
+    </script>
+</body>
+
+</html>
